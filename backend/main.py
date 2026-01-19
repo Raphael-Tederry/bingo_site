@@ -173,6 +173,8 @@ def ensure_comments_file():
     if not os.path.exists(data_dir):
         os.makedirs(data_dir)
     
+    # Only create file if it truly doesn't exist
+    # If it exists (even if empty), leave it alone to preserve git content
     if not os.path.exists(COMMENTS_FILE):
         with open(COMMENTS_FILE, 'w', encoding='utf-8') as f:
             json.dump([], f)
@@ -281,8 +283,49 @@ def read_root():
     return {
         "message": "Bingo API is running",
         "version": "1.0.0",
-        "endpoints": ["/profiles", "/generate"]
+        "endpoints": ["/profiles", "/generate", "/debug"]
     }
+
+
+@app.get("/debug")
+def debug_info():
+    """
+    Debug endpoint to check file system state
+    
+    Reason: Help diagnose deployment issues
+    Called by: Debugging
+    Input: None
+    Output: dict - Debug information
+    """
+    import os
+    
+    debug_data = {
+        "working_directory": os.getcwd(),
+        "main_file_location": __file__,
+        "comments_file_path": COMMENTS_FILE,
+        "comments_file_exists": os.path.exists(COMMENTS_FILE),
+        "data_dir_exists": os.path.exists(os.path.dirname(COMMENTS_FILE)),
+    }
+    
+    # Try to read the file if it exists
+    if os.path.exists(COMMENTS_FILE):
+        try:
+            with open(COMMENTS_FILE, 'r', encoding='utf-8') as f:
+                content = json.load(f)
+                debug_data["comments_file_content"] = content
+                debug_data["comments_count"] = len(content)
+        except Exception as e:
+            debug_data["comments_file_error"] = str(e)
+    
+    # List files in data directory
+    data_dir = os.path.dirname(COMMENTS_FILE)
+    if os.path.exists(data_dir):
+        try:
+            debug_data["data_dir_contents"] = os.listdir(data_dir)
+        except Exception as e:
+            debug_data["data_dir_list_error"] = str(e)
+    
+    return debug_data
 
 
 @app.get("/profiles", response_model=List[ProfileInfo])
