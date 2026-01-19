@@ -30,10 +30,10 @@ app.add_middleware(
 )
 
 # Profiles directory path
-PROFILES_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "profiles")
+PROFILES_DIR = os.path.join(os.path.dirname(__file__), "profiles")
 
 # Comments file path
-COMMENTS_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "comments.json")
+COMMENTS_FILE = os.path.join(os.path.dirname(__file__), "data", "comments.json")
 
 
 # ==================== MODELS ====================
