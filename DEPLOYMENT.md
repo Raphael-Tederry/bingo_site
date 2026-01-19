@@ -37,7 +37,7 @@ git push origin main
    - **Important Settings:**
      - **Name**: `bingo-backend`
      - **Root Directory**: `backend`
-     - **Start Command**: `   cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT`
+     - **Start Command**: `uvicorn main:app --host 0.0.0.0 --port $PORT`
 
 4. **Set Environment Variables for Backend**
    - Go to your backend service → "Variables" tab
@@ -147,7 +147,7 @@ git push origin main
 **Solution**: 
 - Check logs in Railway dashboard
 - Verify `requirements.txt` is in backend folder
-- Ensure start command: `   cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT`
+- Ensure start command: `uvicorn main:app --host 0.0.0.0 --port $PORT`
 - Check that Python version is compatible (3.8+)
 
 ### ❌ Frontend Build Fails
