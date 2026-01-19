@@ -17,10 +17,13 @@ from datetime import datetime
 
 app = FastAPI(title="Bingo API", version="1.0.0")
 
+# Get allowed origins from environment or use localhost as default
+allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000").split(",")
+
 # CORS middleware to allow frontend communication
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Next.js default port
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
