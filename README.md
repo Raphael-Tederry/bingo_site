@@ -100,7 +100,11 @@ bingo_site/
 ├── backend/                 # FastAPI backend
 │   ├── main.py             # Main API application
 │   ├── requirements.txt    # Python dependencies
-│   └── setup.py            # Backend setup script
+│   ├── setup.py            # Backend setup script
+│   ├── profiles/           # Bingo profile files
+│   │   └── generic.txt     # Generic bingo profile
+│   └── data/               # Application data
+│       └── comments.json   # User comments storage
 ├── frontend/               # Next.js frontend
 │   ├── app/                # Next.js app directory
 │   │   ├── page.tsx        # Home page
@@ -116,13 +120,6 @@ bingo_site/
 │   ├── lib/                # Utility functions
 │   ├── package.json        # Node dependencies
 │   └── components.json     # shadcn/ui config
-├── profiles/               # Bingo profile files
-│   ├── office.txt          # Office bingo
-│   ├── meeting.txt         # Meeting bingo
-│   ├── movie-night.txt     # Movie night bingo
-│   └── cooking-show.txt    # Cooking show bingo
-├── data/                   # Application data
-│   └── comments.json       # User comments storage
 └── README.md               # This file
 ```
 
@@ -140,9 +137,9 @@ bingo_site/
 
 ## 📝 Adding Custom Profiles
 
-You can add your own profile themes by creating a `.txt` file in the `profiles/` folder:
+You can add your own profile themes by creating a `.txt` file in the `backend/profiles/` folder:
 
-1. Create a new file: `profiles/my-profile.txt`
+1. Create a new file: `backend/profiles/my-profile.txt`
 2. Add comma-separated values:
    ```
    Value 1, Value 2, Value 3, Another value, More fun, ...
@@ -191,7 +188,7 @@ The playful color scheme uses:
 Edit `frontend/app/globals.css` to customize the color palette.
 
 ### Profiles
-Add or modify profile files in the `profiles/` directory. Each file should contain comma-separated values.
+Add or modify profile files in the `backend/profiles/` directory. Each file should contain comma-separated values.
 
 ## 🔧 Development
 

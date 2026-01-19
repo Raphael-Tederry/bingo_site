@@ -115,7 +115,7 @@ pip install -r requirements.txt
 
 ## What's Next?
 
-- **Add Custom Profiles**: Create `.txt` files in `profiles/` folder
+- **Add Custom Profiles**: Create `.txt` files in `backend/profiles/` folder
 - **Customize Colors**: Edit `frontend/app/globals.css`
 - **Try Dark Mode**: Click the moon/sun icon in the navbar
 - **Read Full Docs**: Check out `README.md` for detailed information
@@ -125,8 +125,9 @@ pip install -r requirements.txt
 ```
 bingo_site/
 ├── backend/           # Python FastAPI backend
+│   ├── profiles/      # Bingo theme files (.txt)
+│   └── data/          # Application data
 ├── frontend/          # Next.js React frontend
-├── profiles/          # Bingo theme files (.txt)
 ├── setup.py           # Main setup script
 └── README.md          # Full documentation
 ```
